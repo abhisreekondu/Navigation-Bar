@@ -1,0 +1,5 @@
+ul{
+    display: flex;
+    text-decoration: none;
+    justify-content: space-around;
+}
