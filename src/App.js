@@ -1,20 +1,54 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Service from './pages/Service';
+import './App.css';
+import { Bar, Doughnut, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, ArcElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  ArcElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const App = () => {
+  const bardata = {
+    labels: ['a', 'b', 'c'],
+    datasets: [
+      {
+        label: 'Revenue',
+        data: [200, 150, 90],
+        backgroundColor: 'skyblue',
+      },
+      {
+        label: 'Loss',
+        data: [90, 180, 700],
+        backgroundColor: 'pink',
+      },
+      {
+        label: 'Profit',
+        data: [300, 250, 400],
+       backgroundColor: 'hotpink',
+      },
+    ],
+  };
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/service" element={<Service />} />
-      </Routes>
-    </Router>
+    <div className='container'>
+      <div className='card1'>
+        <Line data={bardata} />
+      </div>
+      <div className='card2'>
+        <Bar data={bardata} />
+      </div>
+      <div className='card2'>
+        <Doughnut data={bardata} />
+      </div>
+    </div>
   );
 };
 
